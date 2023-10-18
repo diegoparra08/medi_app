@@ -4,9 +4,9 @@ import {Carousel} from '../../components/Carousel/Carousel';
 export const Home = () => {
     return(
         <div>
+            <Carousel/>
             
-            <p className="text-2xl bg-blue-500">Home Page</p>
-          
+        
         </div>
     )
 }
