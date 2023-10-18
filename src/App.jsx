@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import {Home} from './views/Home/Home'
 import  BookApp  from './views/BookApp/BookApp'
 import { Specialties } from './views/Specialties/Specialties'
@@ -6,15 +6,19 @@ import About from './views/About/About'
 import Login from './views/Login/Login'
 import SignIn from './views/SignIn/SignIn'
 import { Nav } from './components/Nav/Nav'
+import HomeButton from './components/HomeButton/HomeButton'
 
 import './App.css'
 
 function App() {
   
+  const location = useLocation();
 
   return (
     <>
      {(location.pathname !== '/login' && location.pathname !== '/signin') && < Nav/>}
+     {(location.pathname === '/login' && location.pathname !== '/signin') ? <HomeButton/> : null }
+     
       <Routes>
 
         <Route path="/" element={<Home/>}/>
