@@ -29,7 +29,7 @@ export const Nav = () => {
     return (
         <div>
             <nav className="bg-customBlue5 px-5 md:px-10 flex justify-between items-center md:justify-evenly flex-wrap relative">
-                <img src={logo} alt="logo Med center" className="w-24 h-24 md:w-28 md:h-28" onClick={handleHomeClick} />
+                <img src={logo} alt="logo Med center" className="w-20 h-20" onClick={handleHomeClick} />
 
                 <div className="block mr-2 md:hidden">
                     <button onClick={toggleMenu}

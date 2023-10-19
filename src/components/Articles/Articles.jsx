@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ButtonTwo } from "../Buttons/Buttons";
 
 
@@ -20,9 +21,7 @@ const Articles = () => {
                     </p>
                     <div className="mt-[36px] flex items-center justify-between gap-4 sm:justify-start 2xl:gap-10">
                     <ButtonTwo label={'Conoce más'} />
-                    <button className="text-customBlue5 font-medium text-lightPrimary hover:scale-105 2xl:ml-2">
-                        Agenda una cita
-                    </button>
+                    <Link to='/book' className="text-customBlue5 font-medium text-lightPrimary hover:scale-105 2xl:ml-2">Agenda tu cita</Link>
                     </div>
                 </div>
             </div>
@@ -40,9 +39,7 @@ const Articles = () => {
                     </p>
                     <div className="mt-[36px] flex items-center justify-between gap-4 sm:justify-start 2xl:gap-10">
                     <ButtonTwo label={'Conoce más'} />
-                    <button className="text-customBlue5 font-medium text-lightPrimary hover:scale-105 2xl:ml-2">
-                        Agenda una cita
-                    </button>
+                    <Link to='/book' className="text-customBlue5 font-medium text-lightPrimary hover:scale-105 2xl:ml-2">Agenda tu cita</Link>
                     </div>
                 </div>
             </div>
