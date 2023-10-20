@@ -38,11 +38,11 @@ export const Nav = () => {
                     </button>
                 </div>
 
-                <div className={`${menuHidden ? 'hidden' : 'flex flex-col items-center'} w-full  items-center flex-grow mb-4  md:flex md:flex-row md:justify-evenly md:flex-wrap md:w-auto`}>
+                <div className={`${menuHidden ? 'hidden' : 'flex flex-col items-center'} w-full  items-center flex-grow mb-4 md:mb-0 md:flex md:flex-row md:justify-evenly md:flex-wrap md:w-auto`}>
 
-                    <Link to='/book' className="text-white hover:text-customBlue font-bold">Agenda Tu Cita</Link>
-                    <Link to='/specialties' className="text-white hover:text-customBlue font-bold">Especialidades</Link>
-                    <Link to='/about' className="text-white hover:text-customBlue font-bold">Acerca de Nosotros</Link>
+                    <Link to='/book' className="text-white hover:text-customBlue3 font-bold">Agenda Tu Cita</Link>
+                    <Link to='/specialties' className="text-white hover:text-customBlue3 font-bold">Especialidades</Link>
+                    <Link to='/about' className="text-white hover:text-customBlue3 font-bold">Acerca de Nosotros</Link>
                     <ButtonOne label={'Iniciar Sesión'} onClick={handleLogInClick} />
                 </div>
             </nav>
