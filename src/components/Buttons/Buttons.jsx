@@ -41,6 +41,25 @@ export const HomeButton = () => {
 
     return (
         <div>
+            <button className='flex flex-col mx-2 my-2 justify-center items-center bg-white rounded-sm shadow-lg py-2 px-3 text-customBlue5 font-bold hover:scale-105 hover:bg-customBlue3 hover:text-white text-3xl'
+                onClick={handleHomeClick}>
+                <MdHome />
+        
+            </button>
+        </div>
+    );
+}
+
+export const HomeButtonDark = () => {
+
+    const navigate = useNavigate();
+
+    const handleHomeClick = () => {
+        navigate('/')
+    }
+
+    return (
+        <div>
             <button className='flex flex-col mx-2 my-2 justify-center items-center bg-customBlue5 rounded-sm shadow-lg py-2 px-3 text-white font-bold hover:scale-105 hover:bg-customBlue3 hover:text-white text-3xl'
                 onClick={handleHomeClick}>
                 <MdHome />
