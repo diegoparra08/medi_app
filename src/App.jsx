@@ -17,7 +17,7 @@ function App() {
   return (
     <>
      {(location.pathname !== '/login' && location.pathname !== '/signin') && < Nav/>}
-     {(location.pathname === '/login' || location.pathname === '/signin') ? <HomeButton/> : null }
+     {/* {(location.pathname === '/login' || location.pathname === '/signin') ? <HomeButton /> : null } */}
      
       <Routes>
 
