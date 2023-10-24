@@ -4,8 +4,8 @@ import logo from '../../images/logo1NB.png'
 
 const Footer = () => {
     return(
-        <footer className="bg-customBlue5 py-6 px-10 flex flex-col mt-8">
-            <div className="grid grid-cols-4 text-white mt-5">
+        <footer className="bg-customBlue5 pt-2 md:pt-6 px-4 md:px-10 flex flex-col mt-8">
+            <div className="grid  grid-cols-1 md:grid-cols-4 text-white mt-5">
                 <div className="flex items-center">
                     <img src={logo} alt="logo" className="w-20 h-20" />
                     <span className='text-2xl'>MediApp</span>
@@ -49,6 +49,9 @@ const Footer = () => {
                         <AiOutlineMail size={30} color="white"/>
                     </Link>
                 </div>
+            </div>
+            <div className="mt-8 pb-1">
+                <p className="text-white text-center text-sm">Todos los derechos reservados</p>
             </div>
 
         </footer>
