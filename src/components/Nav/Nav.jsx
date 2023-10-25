@@ -29,8 +29,10 @@ export const Nav = () => {
     return (
         <div>
             <nav className="bg-customBlue5 px-5 md:px-10 flex justify-between items-center md:justify-evenly flex-wrap relative">
+                <div className="flex items-center">
                 <img src={logo} alt="logo Med center" className="w-20 h-20" onClick={handleHomeClick} />
-
+                <h1 className="text-white text-2xl"><strong>M</strong>ediApp</h1>
+                </div>
                 <div className="block mr-2 md:hidden">
                     <button onClick={toggleMenu}
                         className="flex items-center px-3 py-2 border rounded text-customBlue border-customBlue">

@@ -1,7 +1,8 @@
 import { useState } from "react"
 
-import { ButtonTwo } from "../../Buttons/Buttons"
+import { ButtonOne, ButtonTwo } from "../../Buttons/Buttons"
 import { HomeButton, HomeButtonDark } from "../../Buttons/Buttons"
+import { FcGoogle } from "react-icons/fc";
 
 export const LoginForm = () => {
 
@@ -53,7 +54,14 @@ export const LoginForm = () => {
                                     </div>
                                     <a href="#" className="text-sm font-medium text-customBlue5 hover:underline">¿Olvidaste tu contraseña?</a>
                                 </div>
+                                <div className="flex flex-row w-full space-x-2">
                                 <ButtonTwo label={'Iniciar Sesión'} />
+                                <h2>O</h2>
+                                <button className="flex items-center border border-gray-400 rounded-md bg-white px-1">
+                                    <FcGoogle/> 
+                                    <p className="text-sm ml-1">Iniciar Sesión con Google</p>
+                                </button>
+                                </div>
 
                                 <p className="text-sm font-light text-customBlue5">
                                     ¿No estás registrado aún? <a href="#" onClick={() => setForm(false)} className="font-medium text-customBlue4 hover:underline">Registrarte</a>
