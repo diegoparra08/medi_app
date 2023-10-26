@@ -6,7 +6,6 @@ import About from './views/About/About'
 import Login from './views/Login/Login'
 import SignIn from './views/SignIn/SignIn'
 import { Nav } from './components/Nav/Nav'
-import { HomeButton } from './components/Buttons/Buttons'
 
 import './App.css'
 
@@ -17,7 +16,6 @@ function App() {
   return (
     <>
      {(location.pathname !== '/login' && location.pathname !== '/signin') && < Nav/>}
-     {/* {(location.pathname === '/login' || location.pathname === '/signin') ? <HomeButton /> : null } */}
      
       <Routes>
 
