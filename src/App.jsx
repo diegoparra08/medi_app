@@ -6,6 +6,7 @@ import About from './views/About/About'
 import Login from './views/Login/Login'
 import SignIn from './views/SignIn/SignIn'
 import { Nav } from './components/Nav/Nav'
+import RegisterDoctor from './views/AdminDashboard/RegisterDoctor'
 
 import './App.css'
 
@@ -25,6 +26,8 @@ function App() {
         <Route path="/about" element={<About/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signin" element={<SignIn/>}/>
+        {/* !# esta linea se debe arreglar luego para incluirla en el admin dasboard */}
+        <Route path="/registerdoctor" element={<RegisterDoctor/>}/> 
 
 
       </Routes>
