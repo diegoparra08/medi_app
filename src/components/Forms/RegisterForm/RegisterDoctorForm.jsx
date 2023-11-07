@@ -4,6 +4,7 @@ import axios from "axios";
 
 import { ButtonTwo } from "../../Buttons/Buttons";
 import { HomeButton } from "../../Buttons/Buttons";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 
 export const RegisterDoctorForm = () => {
 
@@ -64,18 +65,18 @@ export const RegisterDoctorForm = () => {
 
                             </div>
                             {errors.name?.type === "required" && (
-                                <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 absolute ml-1 '>
+                                <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1 '>
                                     *Ingrese el nombre del profesional
                                 </span>
                             )}
 
                             {errors.name?.type === "minLength" && (
-                                <span className='text-white text-xs sm:text-sm mt-12 sm:mt-16 absolute ml-1'>
+                                <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1'>
                                     *Ingrese al menos 2 caracteres
                                 </span>
                             )}
                             {errors.name?.type === "pattern" && (
-                                <span className='text-white text-xs sm:text-sm mt-12 sm:mt-16 absolute ml-1' >
+                                <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1' >
                                     *Ingrese solo letras
                                 </span>
                             )}
@@ -86,11 +87,11 @@ export const RegisterDoctorForm = () => {
                                         { required: true, pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/ })}
                                 />
                                 {errors.email?.type === "required" && (
-                                    <span className='text-white text-xs sm:text-sm mt-12 sm:mt-16 absolute ml-1'>
+                                    <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1'>
                                         *Ingrese su correo electronico
                                     </span>)}
                                 {errors.email?.type === "pattern" && (
-                                    <span className='text-white text-xs sm:text-sm mt-12 sm:mt-16 absolute ml-1'>
+                                    <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1'>
                                         *Formato de correo no válido
                                     </span>)}
                             </div>
@@ -107,14 +108,14 @@ export const RegisterDoctorForm = () => {
                                 </select>
 
                                 {errors.specialty?.type === "required" && (
-                                    <span className='text-white text-xs sm:text-sm mt-12 sm:mt-16 absolute ml-1'>
+                                    <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1'>
                                         *Debe ingresar al menos una especialidad
                                     </span>)}
 
                             </div>
                             <div>
                                 <label htmlFor="education" className="block mb-2 text-sm font-medium text-customBlue5">Educación (opcional)</label>
-                                <input name="education" id="education" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                <input name="education" id="education" placeholder="En un parrafo describa la educación" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                     {...register("education",
                                         {
                                             required: false, minLength: 2,
@@ -124,12 +125,12 @@ export const RegisterDoctorForm = () => {
 
 
                                 {errors.education?.type === "minLength" && (
-                                    <span className='text-white text-xs sm:text-sm mt-12 sm:mt-16 absolute ml-1'>
+                                    <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1'>
                                         *Ingrese al menos 2 caracteres
                                     </span>
                                 )}
                                 {errors.education?.type === "pattern" && (
-                                    <span className='text-white text-xs sm:text-sm mt-12 sm:mt-16 absolute ml-1' >
+                                    <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1' >
                                         *Ingrese solo letras
                                     </span>
                                 )}
@@ -142,16 +143,20 @@ export const RegisterDoctorForm = () => {
 
                             <div>
                                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-customBlue5">Contraseña</label>
-                                <input type="password" name="password" id="password" placeholder="8 caracteres minimo" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                    {...register("password",
-                                        { required: true, pattern: /^.{8,}$/ })}
-                                />
+                                <div className="flex items-center space-x-1">
+                                    <input type={visible ? "text" : "password"} name="password" id="password" placeholder="8 caracteres minimo" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        {...register("password",
+                                            { required: true, pattern: /^.{8,}$/ })}
+                                    />
+                                    <span className="text-customBlue5"
+                                        onClick={(e) => showPassword(e)}>{visible ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}</span>
+                                </div>
                                 {errors.password?.type === "required" && (
-                                    <span className='text-white text-xs sm:text-sm mt-12 sm:mt-16 absolute ml-1'>
+                                    <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1'>
                                         *Debe crear una contraseña
                                     </span>)}
                                 {errors.password?.type === "pattern" && (
-                                    <span className='text-white text-xs sm:text-sm mt-12 sm:mt-16 absolute ml-1'>
+                                    <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1'>
                                         *Debe tener al menos 8 caracteres
                                     </span>)}
                             </div>
@@ -163,7 +168,7 @@ export const RegisterDoctorForm = () => {
                                             { required: true })}
                                     />
                                     {errors.birthday?.type === "required" && (
-                                        <span className='text-white text-xs sm:text-sm mt-12 sm:mt-16 absolute ml-1'>
+                                        <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1'>
                                             *Ingrese su fecha de nacimiento
                                         </span>)}
                                 </div>
@@ -174,11 +179,11 @@ export const RegisterDoctorForm = () => {
                                             { required: true, pattern: /^[0-9]+$/ })}
                                     />
                                     {errors.phone?.type === "required" && (
-                                        <span className='text-white text-xs sm:text-sm mt-12 sm:mt-16 absolute ml-1'>
+                                        <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1'>
                                             *Ingrese su número de celular
                                         </span>)}
                                     {errors.phone?.type === "pattern" && (
-                                        <span className='text-white text-xs sm:text-sm mt-12 sm:mt-16 absolute ml-1'>
+                                        <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1'>
                                             *Ingrese solo números
                                         </span>)}
 
@@ -189,9 +194,6 @@ export const RegisterDoctorForm = () => {
 
                                 <ButtonTwo label={'Registrar Doctor'} />
 
-                                <p className="text-sm font-light text-customBlue5">
-                                    ¿Ya tienes una cuenta? <a href="#" onClick={() => setForm(true)} className="font-medium text-customBlue4 hover:underline">Iniciar Sesión</a>
-                                </p>
                             </div>
                         </div>
                     </form>
