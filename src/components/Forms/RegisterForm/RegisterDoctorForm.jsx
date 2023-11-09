@@ -28,7 +28,7 @@ export const RegisterDoctorForm = () => {
         console.log(data);
 
         try {
-            const endpoint = 'http://localhost:3001/user/signup'
+            const endpoint = 'http://localhost:3001/doctor/create'
 
             const response = await axios.post(endpoint, data);
 
@@ -102,8 +102,8 @@ export const RegisterDoctorForm = () => {
                                         { required: true })}
                                 >
                                     <option value="">Seleccione una especialidad</option>
-                                    <option value="">Cardiología</option>
-                                    <option value="">Ortopedia</option>
+                                    <option value="Cardiología">Cardiología</option>
+                                    <option value="Ortopedía">Ortopedía</option>
 
                                 </select>
 
