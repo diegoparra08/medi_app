@@ -8,8 +8,6 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 
 export const RegisterDoctorForm = () => {
 
-
-    const [form, setForm] = useState(true);
     const [visible, setVisible] = useState(false);
 
     const showPassword = (e) => {
@@ -104,6 +102,10 @@ export const RegisterDoctorForm = () => {
                                     <option value="">Seleccione una especialidad</option>
                                     <option value="Cardiología">Cardiología</option>
                                     <option value="Ortopedía">Ortopedía</option>
+
+                                    {/* {Specialties.map((specialty) => 
+                                    <option key={specialty.id}>{specialty.specialty_name}</option>)
+                                    } */}
 
                                 </select>
 
