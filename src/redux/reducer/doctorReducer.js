@@ -1,6 +1,5 @@
 import { GET_DOCTORS } from '../actions/doctorActions'
 
-
 const initialState = {
     doctors: [],
 };
