@@ -25,7 +25,6 @@ export const ButtonTwo = (props) => {
 
             <button className='bg-customBlue5 rounded-md shadow-lg py-1 px-2 text-white font-bold hover:bg-customBlue3 hover:text-white'
                 onClick={props.onClick}> {props.label} </button>
-
         </div>
 
     );

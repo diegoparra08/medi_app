@@ -29,7 +29,7 @@ export const Nav = () => {
     return (
         <div>
             <nav className="bg-customBlue5 px-5 md:px-10 flex justify-between items-center md:justify-evenly flex-wrap relative">
-                <div className="flex items-center cursor-pointer" onClick={handleHomeClick} >
+                <div className="flex items-center cursor-pointer" onClick={handleHomeClick}>
                 <img src={logo} alt="logo Med center" className="w-20 h-20"/>
                 <h1 className="text-white text-2xl"><strong>M</strong>ediApp</h1>
                 </div>
