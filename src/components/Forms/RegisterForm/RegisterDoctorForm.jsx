@@ -1,25 +1,103 @@
 import { useState } from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+
+import { specialtyActions } from "../../../redux/actions/rootActions";
+const { getAllSpecialties } = specialtyActions;
 
 import { ButtonTwo } from "../../Buttons/Buttons";
 import { HomeButton } from "../../Buttons/Buttons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 
+
 export const RegisterDoctorForm = () => {
 
+    const dispatch = useDispatch();
     const [visible, setVisible] = useState(false);
+    const [specialtySelect, setSpecialtySelect] = useState([]);
 
-    const showPassword = (e) => {
-        e.preventDefault();
-        setVisible(!visible)
-    }
+    // const {
+    //     register,
+    //     formState: { errors },
+    //     handleSubmit,
+    //     watch,
+    //     setValue,
+    // } = useForm({
+    //     defaultValues: {
+    //         specialty: specialtySelect,
+    //     }
+    // });
+
+    // const selectedSpecialties = watch("specialty");
+    // console.log('selectedSpecialties', selectedSpecialties);
+
+    // useEffect(() => {
+    //     dispatch(getAllSpecialties());
+
+    // }, [dispatch])
+
+    // const { specialties } = useSelector(state => state.specialties);
+    // console.log('Estado de redux', specialties);
+
+    // const handleSelectChange = (e) => {
+    //     const value = e.target.value;
+
+    //     // Actualizar el estado 'specialtySelect' basado en la lógica de inclusión/exclusión
+    //     const updatedValue = specialtySelect.includes(value)
+    //         ? specialtySelect.filter(specialty => specialty !== value)
+    //         : [...specialtySelect, value];
+
+    //     setSpecialtySelect(updatedValue); // Actualiza el estado con la nueva selección
+    //     setValue('specialty', updatedValue); // Actualiza el valor del campo 'specialty' del formulario
+    // };
 
     const {
         register,
         formState: { errors },
         handleSubmit,
+        watch,
+        setValue,
     } = useForm();
+
+    const selectedSpecialties = watch("specialty");
+    console.log('selectedSpecialties', selectedSpecialties);
+
+    useEffect(() => {
+        dispatch(getAllSpecialties());
+    }, [dispatch]);
+
+    const { specialties } = useSelector(state => state.specialties);
+    console.log('Estado de redux', specialties);
+
+    const handleSelectChange = (e) => {
+        const value = e.target.value;
+
+        const currentValues = selectedSpecialties || [];
+
+        const updatedValue = currentValues.includes(value)
+            ? currentValues.filter(specialty => specialty !== value)
+            : [...currentValues, value];
+
+        setValue('specialty', updatedValue);
+    };
+
+    const handleRemoveSpecialty = (valueToRemove) => {
+
+        const currentValues = selectedSpecialties || [];
+
+        const updatedValue = currentValues.filter(specialty => specialty !== valueToRemove);
+
+        setValue('specialty', updatedValue);
+    };
+
+
+
+    const showPassword = (e) => {
+        e.preventDefault();
+        setVisible(!visible)
+    }
 
     const onSubmit = async (data) => {
 
@@ -93,28 +171,34 @@ export const RegisterDoctorForm = () => {
                                         *Formato de correo no válido
                                     </span>)}
                             </div>
+
                             <div>
                                 <label htmlFor="specialty" className="block mb-2 text-sm font-medium text-customBlue5">Especialidad(es)</label>
-                                <select name="specialty" id="specialty" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                    {...register("specialty",
-                                        { required: true })}
+                                <select className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    id="specialty"
+                                    {...register("specialty")}
+                                    onChange={handleSelectChange}
+                                    value={specialtySelect}
+                                    multiple={false}
                                 >
-                                    <option value="">Seleccione una especialidad</option>
-                                    <option value="Cardiología">Cardiología</option>
-                                    <option value="Ortopedía">Ortopedía</option>
-
-                                    {/* {Specialties.map((specialty) => 
-                                    <option key={specialty.id}>{specialty.specialty_name}</option>)
-                                    } */}
-
+                                    <option value="">Seleccione</option>
+                                    {specialties && specialties.map((specialty) => (
+                                        <option value={specialty.specialty_name} key={specialty.id}>
+                                            {specialty.specialty_name}
+                                        </option>
+                                    ))}
                                 </select>
-
-                                {errors.specialty?.type === "required" && (
-                                    <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1'>
-                                        *Debe ingresar al menos una especialidad
-                                    </span>)}
-
                             </div>
+                            <span className="grid grid-cols-2 gap-4 mt-1 mb-1 md:grid-cols-3">
+                                {
+                                    selectedSpecialties && selectedSpecialties.map((specialty, index) =>
+                                        <div key={index} className="flex items-center justify-center h-9 bg-customBlue5 rounded-md shadow-lg py-1 px-2 text-white font-bold hover:text-white">
+                                            <p className="mr-auto">{specialty}</p>
+                                            <ButtonTwo label={'x'} onClick={() => handleRemoveSpecialty(specialty)} />
+                                        </div>)
+                                }
+                            </span>
+
                             <div>
                                 <label htmlFor="education" className="block mb-2 text-sm font-medium text-customBlue5">Educación (opcional)</label>
                                 <input name="education" id="education" placeholder="En un parrafo describa la educación" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
