@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { doctorActions } from "../../redux/actions/rootActions";
 
-const { getAllDoctors } = doctorActions
+const { getAllDoctors } = doctorActions;
 
 const ViewAllDoctors = () => {
     const dispatch = useDispatch();

@@ -15,4 +15,5 @@ export const getAllDoctors = () => {
         console.log('Error in getting all doctors', error);
     }
   }
-}
+};
+
