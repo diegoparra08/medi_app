@@ -1,19 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { ButtonTwo } from "../../Buttons/Buttons";
-import { specialtyActions } from "../../../redux/actions/rootActions";
+import { specialtyActions, doctorActions } from "../../../redux/actions/rootActions";
 const { getAllSpecialties } = specialtyActions;
+const { getAllDoctors } = doctorActions;
 
 
 export const BookAppForm = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getAllSpecialties())
-    }, [])
+        dispatch(getAllSpecialties());
+        dispatch(getAllDoctors());
+    }, [dispatch])
 
     const { specialties } = useSelector(state => state.specialties);
-
+    const { doctors } = useSelector(state => state.doctors);
+ 
+   
     return (
 
         <div className="h-screen bg-blue-50 flex flex-col justify-center">
@@ -40,7 +44,10 @@ export const BookAppForm = () => {
                                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-customBlue5">Nombre del especialista</label>
                                 <select type="email" name="email" id="email" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required="" >
 
-                                    <option value="">Juanito dominguez</option>
+                                    <option value="">Seleccione</option>
+                                    {doctors.map((doctor) =>
+                                    <option key={doctor.id}>{doctor.name}</option>)
+                                }
                                 </select>
                             </div>
                             <div className="grid grid-cols-2 items-center gap-2 w-full">

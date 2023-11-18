@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import Select from "react-select";
 
 import { specialtyActions } from "../../../redux/actions/rootActions";
 const { getAllSpecialties } = specialtyActions;
@@ -16,42 +17,6 @@ export const RegisterDoctorForm = () => {
 
     const dispatch = useDispatch();
     const [visible, setVisible] = useState(false);
-    const [specialtySelect, setSpecialtySelect] = useState([]);
-
-    // const {
-    //     register,
-    //     formState: { errors },
-    //     handleSubmit,
-    //     watch,
-    //     setValue,
-    // } = useForm({
-    //     defaultValues: {
-    //         specialty: specialtySelect,
-    //     }
-    // });
-
-    // const selectedSpecialties = watch("specialty");
-    // console.log('selectedSpecialties', selectedSpecialties);
-
-    // useEffect(() => {
-    //     dispatch(getAllSpecialties());
-
-    // }, [dispatch])
-
-    // const { specialties } = useSelector(state => state.specialties);
-    // console.log('Estado de redux', specialties);
-
-    // const handleSelectChange = (e) => {
-    //     const value = e.target.value;
-
-    //     // Actualizar el estado 'specialtySelect' basado en la lógica de inclusión/exclusión
-    //     const updatedValue = specialtySelect.includes(value)
-    //         ? specialtySelect.filter(specialty => specialty !== value)
-    //         : [...specialtySelect, value];
-
-    //     setSpecialtySelect(updatedValue); // Actualiza el estado con la nueva selección
-    //     setValue('specialty', updatedValue); // Actualiza el valor del campo 'specialty' del formulario
-    // };
 
     const {
         register,
@@ -59,55 +24,54 @@ export const RegisterDoctorForm = () => {
         handleSubmit,
         watch,
         setValue,
-    } = useForm();
+    } = useForm({
+        defaultValues:
+        {
+            specialty: [],
+        }
+    });
 
     const selectedSpecialties = watch("specialty");
-    console.log('selectedSpecialties', selectedSpecialties);
 
     useEffect(() => {
         dispatch(getAllSpecialties());
     }, [dispatch]);
 
+
     const { specialties } = useSelector(state => state.specialties);
-    console.log('Estado de redux', specialties);
 
-    const handleSelectChange = (e) => {
-        const value = e.target.value;
 
-        const currentValues = selectedSpecialties || [];
+    const handleSelectChange = (selectedOptions) => {
 
-        const updatedValue = currentValues.includes(value)
-            ? currentValues.filter(specialty => specialty !== value)
-            : [...currentValues, value];
+        const selectedValues = selectedOptions.map(option => option.value);
 
-        setValue('specialty', updatedValue);
+        setValue('specialty', selectedValues);
     };
 
     const handleRemoveSpecialty = (valueToRemove) => {
-
-        const currentValues = selectedSpecialties || [];
+        
+        const currentValues = watch('specialty') || []; 
 
         const updatedValue = currentValues.filter(specialty => specialty !== valueToRemove);
 
         setValue('specialty', updatedValue);
     };
 
-
-
     const showPassword = (e) => {
         e.preventDefault();
         setVisible(!visible)
-    }
+    };
+
 
     const onSubmit = async (data) => {
 
-        console.log(data);
+        console.log('data al server', data);
 
         try {
             const endpoint = 'http://localhost:3001/doctor/create'
 
             const response = await axios.post(endpoint, data);
-
+       
             if (response.status === 400) {
                 alert('El usuario ya existe')
             } else if (response.status === 200) {
@@ -116,8 +80,7 @@ export const RegisterDoctorForm = () => {
         } catch (error) {
             throw new Error('Algo salió mal: ' + error.message)
         }
-    }
-
+    };
 
 
     return (
@@ -174,12 +137,11 @@ export const RegisterDoctorForm = () => {
 
                             <div>
                                 <label htmlFor="specialty" className="block mb-2 text-sm font-medium text-customBlue5">Especialidad(es)</label>
-                                <select className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                {/* <select className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                     id="specialty"
                                     {...register("specialty")}
                                     onChange={handleSelectChange}
-                                    value={specialtySelect}
-                                    multiple={false}
+                                    multiple
                                 >
                                     <option value="">Seleccione</option>
                                     {specialties && specialties.map((specialty) => (
@@ -187,7 +149,20 @@ export const RegisterDoctorForm = () => {
                                             {specialty.specialty_name}
                                         </option>
                                     ))}
-                                </select>
+                                </select> */}
+
+                                <Select
+                                    className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    id="specialty"
+                                    {...register("specialty")}
+                                    isMulti
+                                    options={specialties && specialties.map((specialty) => ({
+                                        value: specialty.specialty_name,
+                                        label: specialty.specialty_name
+                                    }))}
+                                    onChange={handleSelectChange}
+                                />
+
                             </div>
                             <span className="grid grid-cols-2 gap-4 mt-1 mb-1 md:grid-cols-3">
                                 {
