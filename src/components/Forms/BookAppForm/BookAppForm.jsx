@@ -67,7 +67,7 @@ export const BookAppForm = () => {
                                     {!filtered ? (doctors.map((doctor) =>
                                         <option key={doctor.id}>{doctor.name}</option>)) :
                                         (filteredDoctors.map((doctor) =>
-                                        <option key={doctor.id}>{doctor.name}</option>))
+                                            <option key={doctor.id}>{doctor.name}</option>))
                                     }
                                 </select>
                             </div>
