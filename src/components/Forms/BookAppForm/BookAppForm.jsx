@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ButtonTwo } from "../../Buttons/Buttons";
 import { specialtyActions, doctorActions } from "../../../redux/actions/rootActions";
 const { getAllSpecialties } = specialtyActions;
@@ -8,6 +8,8 @@ const { getAllDoctors } = doctorActions;
 
 export const BookAppForm = () => {
     const dispatch = useDispatch();
+    const [filtered, setFiltered] = useState(false);
+    const [filteredDoctors, setFilteredDoctors] = useState([]);
 
     useEffect(() => {
         dispatch(getAllSpecialties());
@@ -16,8 +18,24 @@ export const BookAppForm = () => {
 
     const { specialties } = useSelector(state => state.specialties);
     const { doctors } = useSelector(state => state.doctors);
- 
-   
+
+    const filterDoctors = (selectedSpecialtyId) => {
+
+        if (!selectedSpecialtyId) {
+            setFilteredDoctors([]);
+            setFiltered(false);
+            return;
+        }
+
+        const filteredDoctors = doctors.filter((doctor) => {
+            return doctor.Specialties.some(specialty => specialty.specialty_name === selectedSpecialtyId);
+        });
+
+        setFilteredDoctors(filteredDoctors);
+        setFiltered(true);
+    };
+
+
     return (
 
         <div className="h-screen bg-blue-50 flex flex-col justify-center">
@@ -32,12 +50,13 @@ export const BookAppForm = () => {
                             <div>
                                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-customBlue5">Especialidad</label>
 
-                                <select type="email" name="email" id="email" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required="" >
+                                <select type="email" name="email" id="email" onChange={(e) => filterDoctors(e.target.value)}
+                                    className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required="" >
 
-                                <option value="">Seleccione</option>
-                                {specialties.map((specialty) =>
-                                    <option key={specialty.id}>{specialty.specialty_name}</option>)
-                                }
+                                    <option value="">Seleccione</option>
+                                    {specialties.map((specialty) =>
+                                        <option key={specialty.id}>{specialty.specialty_name}</option>)
+                                    }
                                 </select>
                             </div>
                             <div>
@@ -45,9 +64,11 @@ export const BookAppForm = () => {
                                 <select type="email" name="email" id="email" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required="" >
 
                                     <option value="">Seleccione</option>
-                                    {doctors.map((doctor) =>
-                                    <option key={doctor.id}>{doctor.name}</option>)
-                                }
+                                    {!filtered ? (doctors.map((doctor) =>
+                                        <option key={doctor.id}>{doctor.name}</option>)) :
+                                        (filteredDoctors.map((doctor) =>
+                                        <option key={doctor.id}>{doctor.name}</option>))
+                                    }
                                 </select>
                             </div>
                             <div className="grid grid-cols-2 items-center gap-2 w-full">
