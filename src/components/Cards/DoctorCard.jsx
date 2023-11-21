@@ -7,16 +7,16 @@ const DoctorCard = ({ name, specialties }) => {
     return (
 
         <div className="w-80 h-88 p-4 border rounded-lg shadow-md flex flex-col justify-between my-2 mx-2">
-            <div>
-                <img src={doc} alt="Doctorimg" />
+            <div >
+                <img className="rounded-lg" src={doc} alt="Doctorimg" />
             </div>
 
             <h2 className="text-lg font-bold">{name}</h2>
-        <ul className="p-1 space-y-1">
-            {specialties && specialties.map((specialty) => (
-                <li key={specialty.id}>{specialty.specialty_name}</li>
-            ))}
-        </ul>
+            <ul className="p-1 space-y-1">
+                {specialties && specialties.map((specialty) => (
+                    <li key={specialty.id}>{specialty.specialty_name}</li>
+                ))}
+            </ul>
 
             <div className="mt-auto">
                 <ButtonTwo label={'Agendar Cita'} />
