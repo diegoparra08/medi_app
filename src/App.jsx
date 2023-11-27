@@ -32,8 +32,7 @@ function App() {
         <Route path="/registerdoctor" element={<RegisterDoctor/>}/> 
         <Route path="/doctorlist" element={<ViewAllDoctors/>}/> 
         {/* modificar por doctor:id */}
-        <Route path="/doctor" element={<DoctorDetail/>}/> 
-
+        <Route path="/doctor/:id" element={<DoctorDetail/>}/> 
 
       </Routes>
     </>

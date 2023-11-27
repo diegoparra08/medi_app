@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom"; 
 
 import { doctorActions } from "../../redux/actions/rootActions";
 
@@ -9,10 +10,11 @@ const { getAllDoctors } = doctorActions;
 
 const ViewAllDoctors = () => {
     const dispatch = useDispatch();
+ 
 
     useEffect(() => {
         dispatch(getAllDoctors())
-    }, [])
+    }, [dispatch])
 
     const { doctors } = useSelector(state => state.doctors);
     const [doctorsList, setDoctorsList] = useState(doctors);
@@ -52,9 +54,13 @@ const ViewAllDoctors = () => {
                             key={doctor.id}
                         >
                             {doctor.name}
+                            <Link to={`/doctor/${id}`}>
                             <div className="ml-auto mr-2">
-                                <ButtonTwo label={'Ver detalle'} />
+                                <ButtonTwo label={'Ver detalle'}/>
+
                             </div>
+                            </Link>
+                            
                         </li>
                     ))
                 ) : (
@@ -64,9 +70,12 @@ const ViewAllDoctors = () => {
                             key={doctor.id}
                         >
                             {doctor.name}
+                            <Link to={`/doctor/${doctor.id}`}>
                             <div className="ml-auto mr-2">
-                                <ButtonTwo label={'Ver detalle'} />
+                                <ButtonTwo label={'Ver detalle'}/>
+
                             </div>
+                            </Link>
                         </li>
                     ))
                 )}

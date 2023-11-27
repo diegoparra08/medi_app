@@ -6,6 +6,7 @@ import specialtyReducer from './specialtyReducer';
 
 const rootReducer = combineReducers({
   doctors: doctorReducer,
+  doctorDetail: doctorReducer,
   specialties: specialtyReducer
 });
 
