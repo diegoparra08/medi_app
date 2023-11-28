@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 
 import { doctorActions } from "../../redux/actions/rootActions";
 
@@ -10,7 +10,7 @@ const { getAllDoctors } = doctorActions;
 
 const ViewAllDoctors = () => {
     const dispatch = useDispatch();
- 
+
 
     useEffect(() => {
         dispatch(getAllDoctors())
@@ -50,32 +50,30 @@ const ViewAllDoctors = () => {
                 {isOrdered ? (
                     doctorsList.map((doctor) => (
                         <li
-                            className="flex flex-row items-center justify-center bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600  md:w-3/4 lg:w-3/5 p-2 mt-3 mx-auto"
+                            className="flex flex-row justify-center bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 min-w-[95%] md:w-3/4 lg:w-3/5 p-2 mt-3 mx-auto"
                             key={doctor.id}
                         >
                             {doctor.name}
-                            <Link to={`/doctor/${id}`}>
                             <div className="ml-auto mr-2">
-                                <ButtonTwo label={'Ver detalle'}/>
-
+                                <Link to={`/doctor/${doctor.id}`}>
+                                    <ButtonTwo label={'Ver detalle'} />
+                                </Link>
                             </div>
-                            </Link>
-                            
+
                         </li>
                     ))
                 ) : (
                     doctors.map((doctor) => (
                         <li
-                            className="flex flex-row items-center justify-center bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600  md:w-3/4 lg:w-3/5 p-2 mt-3 mx-auto"
+                            className="flex flex-row justify-center bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 min-w-[95%] md:w-3/4 lg:w-3/5 p-2 mt-3 mx-auto"
                             key={doctor.id}
                         >
                             {doctor.name}
-                            <Link to={`/doctor/${doctor.id}`}>
                             <div className="ml-auto mr-2">
-                                <ButtonTwo label={'Ver detalle'}/>
-
+                                <Link to={`/doctor/${doctor.id}`}>
+                                    <ButtonTwo label={'Ver detalle'} />
+                                </Link>
                             </div>
-                            </Link>
                         </li>
                     ))
                 )}
