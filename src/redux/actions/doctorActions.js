@@ -4,7 +4,7 @@ export const GET_DOCTOR_BY_ID = 'GET_DOCTOR_BY_ID'
 export const GET_DOCTORS = 'GET_DOCTORS';
 
 
-const endpoint = 'http://localhost:3001';
+const endpoint = 'https://medi-app-server.vercel.app';
 
 export const getAllDoctors = () => {
   return async (dispatch) => {

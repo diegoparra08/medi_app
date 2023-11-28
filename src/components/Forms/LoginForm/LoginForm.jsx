@@ -31,11 +31,11 @@ export const LoginForm = () => {
 
 
     const onSubmit = async (data) => {
-    
-    console.log(data);    
 
-            try {
-            const endpoint = 'http://localhost:3001/user/signup'
+        console.log(data);
+
+        try {
+            const endpoint = 'https://medi-app-server.vercel.app/user/signup'
 
             const response = await axios.post(endpoint, data);
 
@@ -44,29 +44,29 @@ export const LoginForm = () => {
             } else if (response.status === 200) {
                 console.log('Se creo el usuario con exito')
             }
-         } catch (error) {
-                throw new Error('Algo salió mal: ' + error.message)
-            }
+        } catch (error) {
+            throw new Error('Algo salió mal: ' + error.message)
+        }
     }
-//     const handleSubmit = async (data) => {
-//     setTimeout(() => {
-//         console.log(data);
-//     }, 4000);
+    //     const handleSubmit = async (data) => {
+    //     setTimeout(() => {
+    //         console.log(data);
+    //     }, 4000);
 
-//     try {
-//         const endpoint = 'http://localhost:3001/user/signup';
-//         const response = await axios.post(endpoint, data);
-//         console.log(response);
+    //     try {
+    //         const endpoint = 'http://localhost:3001/user/signup';
+    //         const response = await axios.post(endpoint, data);
+    //         console.log(response);
 
-//         if (response.status === 400) {
-//             alert('El usuario ya existe');
-//         } else if (response.status === 200) {
-//             console.log('Se creó el usuario con éxito');
-//         }
-//     } catch (error) {
-//         throw new Error('Algo salió mal: ' + error.message);
-//     }
-// }
+    //         if (response.status === 400) {
+    //             alert('El usuario ya existe');
+    //         } else if (response.status === 200) {
+    //             console.log('Se creó el usuario con éxito');
+    //         }
+    //     } catch (error) {
+    //         throw new Error('Algo salió mal: ' + error.message);
+    //     }
+    // }
 
     return (
 
@@ -102,9 +102,9 @@ export const LoginForm = () => {
                                 <div>
                                     <label htmlFor="password" className="block mb-2 text-sm font-medium text-customBlue5">Contraseña</label>
                                     <div className="flex items-center space-x-1">
-                                    <input type={visible ? "text" : "password"} name="password" id="password" placeholder="••••••••" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"/>
-                                    <span className="text-customBlue5"
-                                    onClick={(e) => showPassword(e)}>{visible ? <AiOutlineEyeInvisible/> : <AiOutlineEye/>}</span>
+                                        <input type={visible ? "text" : "password"} name="password" id="password" placeholder="••••••••" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
+                                        <span className="text-customBlue5"
+                                            onClick={(e) => showPassword(e)}>{visible ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}</span>
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-between">
@@ -135,7 +135,7 @@ export const LoginForm = () => {
                     </div>
 
                     ) : (
-                    
+
                         <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
                             <div className="p-6 space-y-4 md:space-y-0 sm:p-8">
                                 <h1 className="text-xl font-bold leading-tight tracking-tight text-customBlue5 md:text-2xl">
@@ -155,7 +155,7 @@ export const LoginForm = () => {
                                             <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1 '>
                                                 *Ingrese su nombre
                                             </span>
-                                        )} 
+                                        )}
 
                                         {errors.name?.type === "minLength" && (
                                             <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1'>
@@ -164,9 +164,9 @@ export const LoginForm = () => {
                                         )}
                                         {errors.name?.type === "pattern" && (
                                             <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1' >
-                                              *Ingrese solo letras
+                                                *Ingrese solo letras
                                             </span>
-                                        )}   
+                                        )}
                                     </div>
                                     <div className="relative">
                                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-customBlue5">Correo Electronico</label>
@@ -184,16 +184,16 @@ export const LoginForm = () => {
                                             </span>)}
                                     </div>
                                     <div>
-                                        
+
                                         <label htmlFor="password" className="block mb-2 text-sm font-medium text-customBlue5">Contraseña</label>
                                         <div className="flex items-center space-x-1">
-                                        <input type={visibleRegister? "text" : "password"} name="password" id="password" placeholder="8 caracteres minimo" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                            {...register("password",
-                                                { required: true, pattern: /^.{8,}$/ })}
-                                        />
-                                         <span className="text-customBlue5"
-                                    onClick={(e) => showPasswordRegister(e)}>{visibleRegister ? <AiOutlineEyeInvisible/> : <AiOutlineEye/>}</span>
-                                    </div>
+                                            <input type={visibleRegister ? "text" : "password"} name="password" id="password" placeholder="8 caracteres minimo" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                                {...register("password",
+                                                    { required: true, pattern: /^.{8,}$/ })}
+                                            />
+                                            <span className="text-customBlue5"
+                                                onClick={(e) => showPasswordRegister(e)}>{visibleRegister ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}</span>
+                                        </div>
                                         {errors.password?.type === "required" && (
                                             <span className='text-customBlue5 text-xs sm:text-sm mt-12 sm:mt-16 ml-1'>
                                                 *Debe crear una contraseña
@@ -244,10 +244,6 @@ export const LoginForm = () => {
                         </div>
 
                     )}
-
-
-
-
                 </div>
             </section>
         </div>
