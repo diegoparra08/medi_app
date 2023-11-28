@@ -9,7 +9,7 @@ export const ButtonOne = (props) => {
 
         <div>
 
-            <button className='bg-white rounded-md shadow-lg py-1 px-2 text-customBlue5 font-bold hover:scale-105 hover:bg-customBlue3 hover:text-white'
+            <button className='bg-white rounded-md shadow-lg py-1 px-2 text-customBlue5 font-bold hover:bg-customBlue3 hover:text-white'
                 onClick={props.onClick}> {props.label} </button>
 
         </div>
@@ -23,9 +23,8 @@ export const ButtonTwo = (props) => {
 
         <div>
 
-            <button className='bg-customBlue5 rounded-md shadow-lg py-1 px-2 text-white font-bold hover:scale-105 hover:bg-customBlue3 hover:text-white'
+            <button className='bg-customBlue5 rounded-md shadow-lg py-1 px-2 text-white font-bold hover:bg-customBlue3 hover:text-white'
                 onClick={props.onClick}> {props.label} </button>
-
         </div>
 
     );
