@@ -11,10 +11,11 @@ const DoctorCard = ({ name, specialties }) => {
                 <img className="rounded-lg" src={doc} alt="Doctorimg" />
             </div>
 
-            <h2 className="text-lg font-bold">{name}</h2>
+            <h2 className="text-lg font-bold text-customBlue5">{name}</h2>
             <ul className="p-1 space-y-1">
                 {specialties && specialties.map((specialty) => (
-                    <li key={specialty.id}>{specialty.specialty_name}</li>
+                    <li className="font-semibold text-md text-customBlue4"
+                    key={specialty.id}>{specialty.specialty_name}</li>
                 ))}
             </ul>
 
