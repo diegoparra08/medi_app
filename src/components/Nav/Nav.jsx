@@ -28,7 +28,7 @@ export const Nav = () => {
 
     return (
         <div>
-            <nav className="bg-customBlue5 px-5 md:px-10 flex justify-between items-center md:justify-evenly flex-wrap relative">
+            <nav className="bg-customBlue5 px-2 lg:px-10 flex justify-between items-center md:justify-evenly flex-wrap relative">
                 <div className="flex items-center cursor-pointer" onClick={handleHomeClick}>
                 <img src={logo} alt="logo Med center" className="w-20 h-20"/>
                 <h1 className="text-white text-2xl"><strong>M</strong>ediApp</h1>
@@ -42,9 +42,9 @@ export const Nav = () => {
 
                 <div className={`${menuHidden ? 'hidden' : 'flex flex-col items-center'} w-full  items-center flex-grow mb-4 md:mb-0 md:flex md:flex-row md:justify-evenly md:flex-wrap md:w-auto`}>
 
-                    <Link to='/book' className="text-white hover:text-customBlue3 font-bold">Agenda Tu Cita</Link>
-                    <Link to='/specialties' className="text-white hover:text-customBlue3 font-bold">Especialidades</Link>
-                    <Link to='/about' className="text-white hover:text-customBlue3 font-bold">Acerca de Nosotros</Link>
+                    <Link to='/book' className="text-white hover:text-customBlue3 font-semibold">Agenda Tu Cita</Link>
+                    <Link to='/specialties' className="text-white hover:text-customBlue3 font-semibold">Especialidades</Link>
+                    <Link to='/about' className="text-white hover:text-customBlue3 font-semibold">Acerca de Nosotros</Link>
                     <ButtonOne label={'Iniciar Sesión'} onClick={handleLogInClick} />
                 </div>
             </nav>
