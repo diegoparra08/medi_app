@@ -9,6 +9,7 @@ import { Nav } from './components/Nav/Nav'
 import RegisterDoctor from './views/AdminDashboard/RegisterDoctor'
 import ViewAllDoctors from './views/AdminDashboard/ViewAllDoctors'
 import DoctorDetail from './views/DoctorDetail/DoctorDetail'
+import AdminDash from './views/AdminDashboard/AdminDashBoard'
 
 import './App.css'
 
@@ -31,8 +32,8 @@ function App() {
         {/* !# esta linea se debe arreglar luego para incluirla en el admin dasboard */}
         <Route path="/registerdoctor" element={<RegisterDoctor/>}/> 
         <Route path="/doctorlist" element={<ViewAllDoctors/>}/> 
-        {/* modificar por doctor:id */}
         <Route path="/doctor/:id" element={<DoctorDetail/>}/> 
+        <Route path='/admindash' element={<AdminDash/>} />
 
       </Routes>
     </>
