@@ -17,6 +17,8 @@ function App() {
   
   const location = useLocation();
 
+
+
   return (
     <>
      {(location.pathname !== '/login' && location.pathname !== '/signin') && < Nav/>}
@@ -30,14 +32,14 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/signin" element={<SignIn/>}/>
         {/* !# esta linea se debe arreglar luego para incluirla en el admin dasboard */}
-        <Route path="/registerdoctor" element={<RegisterDoctor/>}/> 
-        <Route path="/doctorlist" element={<ViewAllDoctors/>}/> 
+        {/* <Route path="/registerdoctor" element={<RegisterDoctor/>}/> 
+        <Route path="/doctorlist" element={<ViewAllDoctors/>}/>  */}
         <Route path="/doctor/:id" element={<DoctorDetail/>}/> 
-        <Route path='/admindash' element={<AdminDash/>} />
+        <Route path='/admindash/*' element={<AdminDash/>} />
 
       </Routes>
     </>
   )
 }
 
-export default App
+export default App;
