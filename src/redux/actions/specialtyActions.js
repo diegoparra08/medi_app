@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const GET_SPECIALTIES = 'GET_SPECIALTIES'
-const endpoint = 'http://localhost:3001'
+const endpoint = 'https://medi-app-server.vercel.app'
 
 export const getAllSpecialties = () => {
     return async (dispatch) => {
