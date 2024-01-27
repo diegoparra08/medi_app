@@ -38,8 +38,8 @@ const ViewAllDoctors = () => {
 
 
     return (
-        <div className="flex flex-col items-center">
-            <h1>Doctores</h1>
+        <div className="flex flex-col items-center pt-4">
+            <h1 className="py-4 text-xl font-bold leading-tight tracking-tight text-customBlue5 md:text-2xl">Doctores</h1>
 
             <div className="flex space-x-4">
                 <ButtonTwo label={'Ordenar A-Z'} onClick={() => orderByName(doctors, 'asc')} />
@@ -56,6 +56,7 @@ const ViewAllDoctors = () => {
                             {doctor.name}
                             <div className="ml-auto mr-2">
                                 <Link to={`/doctor/${doctor.id}`}>
+                               
                                     <ButtonTwo label={'Ver detalle'} />
                                 </Link>
                             </div>
@@ -70,7 +71,7 @@ const ViewAllDoctors = () => {
                         >
                             {doctor.name}
                             <div className="ml-auto mr-2">
-                                <Link to={`/doctor/${doctor.id}`}>
+                                <Link to={`/doctor/${doctor.id}`} >
                                     <ButtonTwo label={'Ver detalle'} />
                                 </Link>
                             </div>
