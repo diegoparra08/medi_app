@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { ButtonTwo } from "../../Buttons/Buttons";
-import { specialtyActions, doctorActions } from "../../../redux/actions/rootActions";
-const { getAllSpecialties } = specialtyActions;
-const { getAllDoctors } = doctorActions;
+import { fetchAllDoctors, fetchAllSpecialties } from "../../../redux";
 
 
 export const BookAppForm = () => {
@@ -12,12 +10,12 @@ export const BookAppForm = () => {
     const [filteredDoctors, setFilteredDoctors] = useState([]);
 
     useEffect(() => {
-        dispatch(getAllSpecialties());
-        dispatch(getAllDoctors());
+        dispatch(fetchAllSpecialties());
+        dispatch(fetchAllDoctors());
     }, [dispatch])
 
-    const { specialties } = useSelector(state => state.specialties);
-    const { doctors } = useSelector(state => state.doctors);
+    const { specialties } = useSelector(state => state.specialty);
+    const { doctors } = useSelector(state => state.doctor);
 
     const filterDoctors = (selectedSpecialtyId) => {
 
@@ -48,23 +46,23 @@ export const BookAppForm = () => {
                         </h2>
                         <form className="space-y-4" action="#">
                             <div>
-                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-customBlue5">Especialidad</label>
+                                <label htmlFor="specialties" className="block mb-2 text-sm font-medium text-customBlue5">Especialidad</label>
 
-                                <select type="email" name="email" id="email" onChange={(e) => filterDoctors(e.target.value)}
-                                    className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required="" >
+                                <select name="specialties" id="specialties" onChange={(e) => filterDoctors(e.target.value)}
+                                    className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
 
                                     <option value="">Seleccione</option>
-                                    {specialties.map((specialty) =>
+                                    {specialties?.map((specialty) =>
                                         <option key={specialty.id}>{specialty.specialty_name}</option>)
                                     }
                                 </select>
                             </div>
                             <div>
-                                <label htmlFor="password" className="block mb-2 text-sm font-medium text-customBlue5">Nombre del especialista</label>
-                                <select type="email" name="email" id="email" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required="" >
+                                <label htmlFor="doctor" className="block mb-2 text-sm font-medium text-customBlue5">Nombre del especialista</label>
+                                <select name="doctor" id="doctor" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" >
 
                                     <option value="">Seleccione</option>
-                                    {!filtered ? (doctors.map((doctor) =>
+                                    {!filtered ? (doctors?.map((doctor) =>
                                         <option key={doctor.id}>{doctor.name}</option>)) :
                                         (filteredDoctors.map((doctor) =>
                                             <option key={doctor.id}>{doctor.name}</option>))
@@ -77,9 +75,9 @@ export const BookAppForm = () => {
                                     <input type="date" name="birthday" id="birthday" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required="" />
                                 </div>
                                 <div>
-                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-customBlue5">Hora</label>
+                                    <label htmlFor="hour" className="block mb-2 text-sm font-medium text-customBlue5">Hora</label>
 
-                                    <select type="email" name="email" id="email" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required="" >
+                                    <select name="hour" id="hour" className="bg-blue-50 border border-customBlue5 text-customBlue5 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required="" >
 
                                         <option value="">12:00</option>
 
