@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { specialtyActions, doctorActions } from "../../redux/actions/rootActions";
-const { getAllSpecialties } = specialtyActions;
-const { getAllDoctors } = doctorActions;
+import { fetchAllDoctors, fetchAllSpecialties } from "../../redux";
 
 import DoctorCard from '../../components/Cards/DoctorCard'
 import { useState } from "react";
@@ -15,12 +13,13 @@ export const Specialties = () => {
     const [filteredDoctors, setFilteredDoctors] = useState([]);
 
     useEffect(() => {
-        dispatch(getAllSpecialties());
-        dispatch(getAllDoctors());
+        dispatch(fetchAllSpecialties());
+        dispatch(fetchAllDoctors());
     }, [dispatch])
 
-    const { specialties } = useSelector(state => state.specialties);
-    const { doctors } = useSelector(state => state.doctors);
+    const { specialties } = useSelector(state => state.specialty);
+
+    const { doctors } = useSelector(state => state.doctor);
 
     const filterDoctors = (selectedSpecialtyId) => {
 

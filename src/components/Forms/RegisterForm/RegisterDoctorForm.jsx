@@ -4,10 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Select from "react-select";
-
-import { specialtyActions } from "../../../redux/actions/rootActions";
-const { getAllSpecialties } = specialtyActions;
-
+import { fetchAllSpecialties } from "../../../redux";
 import { ButtonTwo } from "../../Buttons/Buttons";
 import { HomeButton } from "../../Buttons/Buttons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
@@ -34,11 +31,11 @@ export const RegisterDoctorForm = () => {
     const selectedSpecialties = watch("specialty");
 
     useEffect(() => {
-        dispatch(getAllSpecialties());
+        dispatch(fetchAllSpecialties());
     }, [dispatch]);
 
 
-    const { specialties } = useSelector(state => state.specialties);
+    const { specialties } = useSelector(state => state.specialty);
 
 
     const handleSelectChange = (selectedOptions) => {

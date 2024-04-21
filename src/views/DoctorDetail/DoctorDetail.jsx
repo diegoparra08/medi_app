@@ -1,13 +1,12 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useParams } from "react-router-dom";
-import { doctorActions } from "../../redux/actions/rootActions";
+import { fetchDoctorById } from "../../redux";
 import { ButtonTwo } from "../../components/Buttons/Buttons";
 import { FaPhoneAlt } from 'react-icons/fa';
 import { MdMail } from 'react-icons/md';
 import doc from '../../images/docprofile.jpeg'
 
-const { getDoctorById } = doctorActions;
 
 const DoctorDetail = () => {
 
@@ -15,10 +14,10 @@ const DoctorDetail = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        dispatch(getDoctorById(id))
+        dispatch(fetchDoctorById(id))
     }, [])
 
-    const { doctorDetail } = useSelector(state => state.doctorDetail);
+    const { doctorDetail } = useSelector(state => state.doctor);
     const { Specialties, education, name, email, phone, birthday } = doctorDetail;
 
 

@@ -1,11 +1,11 @@
 import { BookAppForm } from "../../components/Forms/BookAppForm/BookAppForm";
 
 const BookApp = () => {
-    return ( 
+    return (
         <div>
-<BookAppForm/>
+            <BookAppForm />
         </div>
-     );
+    );
 }
- 
+
 export default BookApp;

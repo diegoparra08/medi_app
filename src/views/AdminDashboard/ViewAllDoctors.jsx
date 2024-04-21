@@ -1,22 +1,19 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
-import { doctorActions } from "../../redux/actions/rootActions";
-
+import { fetchAllDoctors } from "../../redux";
 import { ButtonTwo } from "../../components/Buttons/Buttons";
 
-const { getAllDoctors } = doctorActions;
 
 const ViewAllDoctors = () => {
     const dispatch = useDispatch();
 
 
     useEffect(() => {
-        dispatch(getAllDoctors())
+        dispatch(fetchAllDoctors())
     }, [dispatch])
 
-    const { doctors } = useSelector(state => state.doctors);
+    const { doctors } = useSelector(state => state.doctor);
     const [doctorsList, setDoctorsList] = useState(doctors);
     const [isOrdered, setIsOrdered] = useState(false);
 
